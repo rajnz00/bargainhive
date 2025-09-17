@@ -6,6 +6,9 @@
     "validate:data": "ajv -s data/products.schema.json -d data/products.json"
   },
   "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^2.1.1",
     "ajv-cli": "^5.0.0"
   }
 }
+

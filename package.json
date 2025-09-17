@@ -1,11 +1,16 @@
 {
-  "name": "bargainhive-starter",
-  "version": "0.1.0",
+  "name": "bargainhive",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
   "scripts": {
-    "build": "echo Build step && mkdir -p dist && cp index.html dist/index.html",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "validate:data": "ajv -s data/products.schema.json -d data/products.json"
   },
   "devDependencies": {
+    "astro": "^4.0.0",
     "ajv-cli": "^5.0.0"
   }
 }

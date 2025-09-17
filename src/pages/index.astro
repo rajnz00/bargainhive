@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import products from '../../data/products.json';
+import ProductCard from '../components/ProductCard.astro';
+---
+<Base title="BargainHive">
+  <h1>Welcome to BargainHive</h1>
+  <p>Astro static build pulling product JSON at build time.</p>
+  <h2>Featured products</h2>
+  <ul class="grid">
+    {products.slice(0,6).map(p => <ProductCard product={p} />)}
+  </ul>
+</Base>

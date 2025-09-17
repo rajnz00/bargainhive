@@ -1,0 +1,11 @@
+---
+const { product } = Astro.props;
+---
+<li class="card">
+  <div class="card-body">
+    <h3>{product.name}</h3>
+    {product.description && <p>{product.description}</p>}
+    <p class="muted">{product.category}</p>
+    <strong>${product.price} {product.currency}</strong>
+  </div>
+</li>

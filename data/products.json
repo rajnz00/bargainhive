@@ -1,0 +1,10 @@
+[
+  {
+    "id": "sku-bh-001",
+    "name": "Wireless Earbuds",
+    "price": 59.0,
+    "currency": "NZD",
+    "status": "active",
+    "category": "Electronics"
+  }
+]

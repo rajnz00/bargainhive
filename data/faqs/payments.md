@@ -1,0 +1,2 @@
+# Payments
+- Visa, MasterCard, Amex.

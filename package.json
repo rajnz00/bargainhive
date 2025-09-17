@@ -1,0 +1,11 @@
+{
+  "name": "bargainhive-starter",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "echo Build step && mkdir -p dist && cp index.html dist/index.html",
+    "validate:data": "ajv -s data/products.schema.json -d data/products.json"
+  },
+  "devDependencies": {
+    "ajv-cli": "^5.0.0"
+  }
+}

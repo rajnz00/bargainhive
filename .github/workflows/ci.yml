@@ -1,16 +1,31 @@
-
 name: CI
+
 on:
   pull_request:
   push:
     branches: [main, dev]
+
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm ci || true
-      - run: npx ajv-cli validate -s data/products.schema.json -d data/products.json
+
+      # Install from lockfile (you committed package-lock.json already)
+      - name: Install dependencies
+        run: npm ci
+
+      # Show files (light debug – helpful if anything else breaks)
+      - name: Show repo and data dir
+        run: |
+          node -v
+          ls -la
+          ls -la data || true
+
+      # ✅ Validate with JSON Schema 2020-12
+      - name: Validate product data (JSON Schema 2020-12)
+        run: npx -y ajv-cli@5 -c ajv2020 validate -s data/products.schema.json -d data/products.json

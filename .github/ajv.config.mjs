@@ -1,17 +1,19 @@
-// .github/ajv.config.mjs
-// Ajv CLI expects a function that receives the Ajv instance
-export default function configureAjv(ajv) {
-  // Example: allow additional properties and disable strict mode
-  ajv.opts.strict = false;
+// .github/ajv.config.cjs
+// ajv-cli@5 expects this module to export a FUNCTION that receives an Ajv instance.
+// Return the configured Ajv instance.
 
-  // If you’re using ajv-formats, add them here:
+module.exports = function (ajv) {
+  // be tolerant (we already enforce essentials in schema)
+  ajv.opts.strict = false;
+  ajv.opts.allErrors = true;
+
+  // add common formats if available (email, uri, date-time, etc.)
   try {
-    const addFormats = (await import('ajv-formats')).default;
-    addFormats(ajv);
+    require('ajv-formats')(ajv);
   } catch (e) {
+    // optional dependency: fine if missing
     console.warn('ajv-formats not found, continuing without it');
   }
 
-  // Return the configured instance
   return ajv;
-}
+};

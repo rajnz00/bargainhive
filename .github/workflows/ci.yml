@@ -28,4 +28,4 @@ jobs:
 
       # ✅ Validate with JSON Schema 2020-12
       - name: Validate product data (JSON Schema 2020-12)
-       run: npx -y ajv-cli@5 validate -c ajv2020 -s data/products.schema.json -d data/products.json
+        run: npx -y ajv-cli@5 validate -c ajv2020 -s data/products.schema.json -d data/products.json

@@ -1,8 +1,37 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><title>BargainHive</title></head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BargainHive — Smart deals, simple shopping</title>
+  <meta name="description" content="Quality products at unbeatable prices.">
+  <style>
+    :root { --bg:#0b0b0c; --fg:#f7f7f8; --muted:#b9bcc1; --accent:#ffd24d; }
+    html,body { height:100%; margin:0; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+           background: linear-gradient(180deg,#0b0b0c, #121217);
+           color: var(--fg); display:flex; align-items:center; justify-content:center; }
+    .wrap { max-width:900px; padding:32px; text-align:center }
+    h1 { font-size: clamp(40px, 6vw, 64px); margin:0 0 12px }
+    p.lead { color:var(--muted); font-size: clamp(16px, 2.4vw, 20px); margin:0 0 24px }
+    .cta { display:inline-block; padding:12px 18px; border-radius:12px; 
+           background: var(--accent); color:#111; font-weight:700; text-decoration:none }
+    .row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:16px }
+    footer { margin-top:28px; font-size:14px; color:var(--muted) }
+    code { background:#1b1c22; padding:3px 6px; border-radius:6px }
+  </style>
+</head>
 <body>
-<h1>BargainHive</h1>
-<p>Welcome to BargainHive starter!</p>
+  <main class="wrap">
+    <h1>BargainHive</h1>
+    <p class="lead">Smart product deals, simple shopping. Site is being wired to our product data and checkout.</p>
+    <a class="cta" href="mailto:hello@bargainhive.store">Contact us</a>
+    <div class="row">
+      <a class="cta" href="/data/products.json" style="background:#2dd4bf;color:#111;">View sample products JSON</a>
+      <a class="cta" href="/.netlify/functions/stripe-products" style="background:#93c5fd;color:#111;">Test API (if enabled)</a>
+    </div>
+    <footer>© <span id="y"></span> BargainHive. All rights reserved.</footer>
+  </main>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
 </body>
 </html>

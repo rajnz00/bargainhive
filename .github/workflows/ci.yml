@@ -26,6 +26,7 @@ jobs:
           ls -la
           ls -la data || true
 
-      # ✅ Validate with JSON Schema 2020-12
+      # ✅ Validate with JSON Schema 2020-12 (using explicit Ajv config)
       - name: Validate product data (JSON Schema 2020-12)
-        run: npx -y ajv-cli@5 validate -c ajv2020 -s data/products.schema.json -d data/products.json
+        run: npx -y ajv-cli@5 validate -c .github/ajv.config.mjs -s data/products.schema.json -d data/products.json --errors=text --strict=false
+

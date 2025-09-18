@@ -1,20 +1,17 @@
 // .github/ajv.config.mjs
-import addFormats from "ajv-formats";
+// Ajv CLI expects a function that receives the Ajv instance
+export default function configureAjv(ajv) {
+  // Example: allow additional properties and disable strict mode
+  ajv.opts.strict = false;
 
-/**
- * Ajv CLI loads this module and calls the default-exported function.
- * The function receives the Ajv *constructor* (not an instance).
- * Return a configured Ajv instance.
- */
-export default function (Ajv) {
-  // loosen strictness to be friendly with simple schemas / data
-  const ajv = new Ajv({
-    strict: false,
-    allErrors: true,
-  });
+  // If you’re using ajv-formats, add them here:
+  try {
+    const addFormats = (await import('ajv-formats')).default;
+    addFormats(ajv);
+  } catch (e) {
+    console.warn('ajv-formats not found, continuing without it');
+  }
 
-  // add common string/number formats (email, uri, date-time, etc.)
-  addFormats(ajv);
-
+  // Return the configured instance
   return ajv;
 }

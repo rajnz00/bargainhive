@@ -1,14 +1,31 @@
+# ──────────────────────────────────────────────
+# Netlify configuration for BargainHive
+# This tells Netlify to publish files directly
+# from the repository root without running a
+# build step, since your site is currently
+# plain static HTML + assets.
+# ──────────────────────────────────────────────
 
 [build]
-  command = "npm run build"
-  publish = "dist"
+  # Path to publish (the folder containing index.html)
+  publish = "."
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
+  # Build command — left blank because there is no build process yet.
+  command = ""
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  # Directory for Netlify Functions (serverless functions)
+  functions = "functions"
+
+# ──────────────────────────────────────────────
+# Optional: redirect www → non-www (or vice versa)
+# Uncomment if you’d like Netlify to enforce one canonical URL.
+# [[redirects]]
+#   from = "https://www.bargainhive.store/*"
+#   to = "https://bargainhive.store/:splat"
+#   status = 301
+#   force = true
+# ──────────────────────────────────────────────
+
+# You can add more settings here later, e.g.,
+# custom headers, redirects, or build environment
+# variables, once you introduce a build step.

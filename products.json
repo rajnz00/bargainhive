@@ -1,0 +1,25 @@
+[
+  { "title": "Vintage Denim Jacket",     "stripePrice": "price_1S0ghePS76jaeeTCaVmX2zQ6" },
+  { "title": "Leather Satchel",          "stripePrice": "price_1S8slvPS76jaeeTCkIMVc5Sw" },
+  { "title": "Classic Analog Watch",     "stripePrice": "price_1S8sr5PS76jaeeTCg9LoiUk2" },
+
+  { "title": "Grey Runners",             "stripePrice": "price_1S0g5tPS76jaeeTCTlm4fHBx" },
+  { "title": "White Classics",           "stripePrice": "price_1S0gFIPST6jaeeTCO3F3GkZo" },
+  { "title": "Leather Boots",            "stripePrice": "price_1S9dpSPS76jaeeTCsDBwFL2d" },
+
+  { "title": "Film Camera",              "stripePrice": "price_1S9bYvPS76jaeeTCWwI6ThwX" },
+  { "title": "Studio Headphones",        "stripePrice": "price_1S9baNPS76jaeeTCKnpcYnza" },
+  { "title": "Retro Console",            "stripePrice": "price_1S9bf8PS76jaeeTCajhdh1Qd" },
+
+  { "title": "Board Game Classics",      "stripePrice": "price_1S0gS7PS76jaeeTCzdIK3cZJ" },
+  { "title": "Mixed Toys & Games",       "stripePrice": "price_1S9brwPS76jaeeTC0pwXs899" },
+  { "title": "Classic Puzzle Set",       "stripePrice": "price_1S9cQTPS76jaeeTCKqkHYb3Y" },
+
+  { "title": "Assorted Sports Gear",     "stripePrice": "price_1S9cVnPS76jaeeTCHkX4oTFS" },
+  { "title": "Signed Jersey",            "stripePrice": "price_1S9cXZPS76jaeeTCyti1lESE" },
+  { "title": "Vintage Tennis Racket",    "stripePrice": "price_1S9cZHPS76jaeeTCaTigNEH9" },
+
+  { "title": "Home Decor Mix",           "stripePrice": "price_1S9ctDPS76jaeeTC3gGF49hs" },
+  { "title": "Industrial Lamp",          "stripePrice": "price_1S0gdRPS76jaeeTChB1i4rQg" },
+  { "title": "Compact Tool Kit",         "stripePrice": "price_1S9cwUPS76jaeeTCZB4b4Aiu" }
+]

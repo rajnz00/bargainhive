@@ -2,115 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>BargainHive – Sweet Deals. Every Day.</title>
-  <meta name="description" content="BargainHive – an online hive of unbeatable deals: Vintage Clothing, Sneakers, Electronics, Toys & Games, Sports Gear, Home Decor & Tools. Quality finds at sweet prices." />
-  <link rel="canonical" href="https://www.bargainhive.shop/" />
-  <!-- Open Graph -->
-  <meta property="og:title" content="BargainHive – Sweet Deals. Every Day." />
-  <meta property="og:description" content="Shop Vintage, Sneakers, Electronics, Toys, Sports, and Home deals in one buzzing hive." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.bargainhive.shop/" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1512890178375-10d84c86a5f2?q=80&w=1200&auto=format&fit=crop" />
+  <meta name="description" content="BargainHive – hand-picked deals across vintage clothing, sneakers, electronics, toys, sports memorabilia, and home decor." />
 
-  <!-- Basic cozy styles (no frameworks) -->
   <style>
-    :root{
-      --bg:#fffdf7; /* warm off-white */
-      --ink:#222;   /* charcoal */
-      --muted:#555;
-      --bee:#ffd633; /* honey yellow */
-      --accent:#111; /* deep */
-      --card:#ffffff;
-      --ring:rgba(0,0,0,.08);
-      --radius:16px;
-      --shadow:0 6px 20px rgba(0,0,0,.08);
+    :root {
+      --bg:#fff; --fg:#111; --muted:#666; --brand:#111; --accent:#111;
+      --card:#fafafa; --border:#eaeaea; --pad:16px; --radius:12px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;background:var(--bg);color:var(--ink);}
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block;border-radius:12px}
-    .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
-    header{
-      position:sticky;top:0;z-index:50;background:rgba(255,253,247,.9);backdrop-filter:saturate(180%) blur(8px);
-      border-bottom:1px solid rgba(0,0,0,.06);
-    }
-    .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:var(--bee);box-shadow:inset 0 0 0 2px rgba(0,0,0,.1)}
-    .logo svg{width:26px;height:26px}
-    .title{font-weight:800;letter-spacing:.2px}
-    nav{display:flex;gap:14px;flex-wrap:wrap}
-    .nav a{padding:10px 12px;border-radius:999px}
-    .nav a.active, .nav a:hover{background:var(--accent);color:#fff}
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; color:var(--fg); background:var(--bg); }
+    a { color:inherit; text-decoration: none; }
+    img { max-width:100%; display:block; border-radius: 10px; }
+    .wrap { max-width:1100px; margin:0 auto; padding: 0 16px; }
+    .bar { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .logo { width:42px; height:42px; display:inline-block; }
+    .title { font-weight:800; letter-spacing:.3px; }
+    .eyebrow { color:var(--muted); font-size:.9rem; }
+    .nav { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+    .nav a { padding:6px 8px; border-radius:8px; }
+    .nav a.active, .badge { background:#111; color:white; padding:6px 10px; border-radius:999px; }
+    header { border-bottom:1px solid var(--border); background:#fff; position:sticky; top:0; z-index:10; }
+    main { display:block; }
+    section { padding: 28px 0; }
+    h1 { font-size: clamp(24px, 3vw, 36px); margin: 8px 0 0; }
+    h2 { font-size: clamp(20px, 2.4vw, 28px); margin: 0 0 12px; }
+    h3 { font-size: 18px; margin: 8px 0 4px; }
+    .muted { color: var(--muted); }
+    .btn { border:1px solid var(--border); background:#f6f6f6; padding:8px 12px; border-radius:10px; cursor:pointer; }
+    .btn.dark { background:#111; color:#fff; border-color:#111; }
+    .btn:disabled { opacity:.6; cursor:not-allowed; }
+    .cta { margin-top:8px; }
+    .hero { display:grid; grid-template-columns: 1.2fr .8fr; gap:20px; align-items:center; }
+    .hero img { border-radius:16px; }
+    @media (max-width: 850px){ .hero { grid-template-columns:1fr; } }
+    .kicker { color:#555; text-transform:uppercase; letter-spacing:.12em; font-weight:700; font-size:.8rem; margin: 0 0 6px; }
+    .grid { display:grid; gap:16px; }
+    .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    @media (max-width: 900px){ .cols-3,.cols-4 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 560px){ .cols-3,.cols-4 { grid-template-columns: 1fr; } }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; }
+    .pad { padding:12px; }
+    .page { display:none; }
+    .page.active { display:block; }
 
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:36px 0 12px}
-    .chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px 12px;border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow)}
-    .cta{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
-    .btn{appearance:none;border:0;padding:12px 16px;border-radius:999px;cursor:pointer;font-weight:700}
-    .btn.primary{background:var(--bee)}
-    .btn.dark{background:var(--accent);color:#fff}
-    .eyebrow{font-size:.9rem;color:var(--muted)}
-
-    .grid{display:grid;gap:18px}
-    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}.grid.cols-3{grid-template-columns:1fr 1fr}}
-    @media (max-width:640px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
-
-    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--ring)}
-    .card .pad{padding:16px}
-    .badge{display:inline-block;background:var(--bee);padding:4px 10px;border-radius:999px;font-weight:700}
-    .muted{color:var(--muted)}
-
-    section{scroll-margin-top:90px;padding:40px 0}
-    h1,h2,h3{line-height:1.2;margin:0 0 10px}
-    h2{font-size:1.8rem}
-
-    .kicker{font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#7a6b2f}
-
-    footer{margin-top:40px;background:#111;color:#eee}
-    footer .cols{display:grid;gap:20px;grid-template-columns:2fr 1fr 1fr}
-    footer a{color:#eee}
-    footer li{list-style:none;margin:8px 0}
-    @media (max-width:800px){footer .cols{grid-template-columns:1fr}}
-
-    .menu-list a{display:flex;justify-content:space-between;align-items:center;padding:14px 14px;border:1px solid var(--ring);border-radius:12px;margin-bottom:10px;background:#fff}
-
-    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
-
-    /* Forms */
-    form{display:grid;gap:12px}
-    input,select,textarea{padding:12px;border-radius:10px;border:1px solid var(--ring);font:inherit;width:100%}
-    label{font-weight:600}
-    .success{display:none;margin-top:8px;color:#0a7f3f;font-weight:700}
-
-    /* Blog */
-    .blog-grid{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr))}
-    @media (max-width:900px){.blog-grid{grid-template-columns:1fr 1fr}}
-    @media (max-width:600px){.blog-grid{grid-template-columns:1fr}}
-
-    /* Simple router cue */
-    .page{display:none}
-    .page.active{display:block}
-
-    .note{background:#fff8d6;border:1px solid #fde58a;padding:10px;border-radius:10px}
+    /* cart drawer (minimal) */
+    #cartDrawer { position:fixed; inset:0; background:rgba(0,0,0,.35); display:none; z-index:1000; }
+    #cartPanel { position:absolute; right:0; top:0; height:100%; width:360px; max-width:92vw; background:#fff; box-shadow:-8px 0 20px rgba(0,0,0,.15); display:flex; flex-direction:column; }
+    #cartHead, #cartFoot { padding:16px 20px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center; }
+    #cartFoot { border-top:1px solid #eee; border-bottom:none; }
   </style>
-
-  <!-- JSON-LD (basic Organization + Website) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "BargainHive",
-    "url": "https://www.bargainhive.shop/",
-    "logo": "https://images.unsplash.com/photo-1512890178375-10d84c86a5f2?q=80&w=800&auto=format&fit=crop",
-    "sameAs": ["https://www.facebook.com/","https://www.instagram.com/"]
-  }
-  </script>
 </head>
 <body>
+
+  <!-- Header / Nav -->
   <header>
     <div class="wrap bar">
       <div class="brand">
@@ -128,6 +77,7 @@
           <div class="eyebrow">Sweet Deals. Every Day.</div>
         </div>
       </div>
+
       <nav class="nav" aria-label="Primary">
         <a href="#home" data-link>Home</a>
         <a href="#menu" data-link>Menu</a>
@@ -136,50 +86,60 @@
         <a href="#about" data-link>About</a>
         <a href="#contact" data-link>Contact</a>
         <a href="#booking" class="badge" data-link>Book</a>
+
+        <!-- Cart Button -->
+        <button id="cartBtn" class="btn" style="position:relative; margin-left:8px">
+          🛒
+          <span id="cartCount" style="
+            position:absolute; top:-6px; right:-10px;
+            background:#000; color:#fff; border-radius:10px;
+            font-size:.75rem; padding:1px 6px; line-height:1;">0</span>
+        </button>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
+
     <!-- HOME -->
     <section id="home" class="page active" aria-labelledby="home-h">
-      <div class="hero">
+      <div class="hero" style="margin:20px 0;">
         <div>
-          <span class="chip">Welcome to the Hive 🐝</span>
-          <h1 id="home-h">Find something you love—at a price you’ll love more.</h1>
-          <p class="muted">Curated bargains across Vintage Clothing & Accessories, Sneakers, Electronics, Toys & Board Games, Sports Gear, and Home Decor & Tools.</p>
+          <h1 id="home-h">Welcome to BargainHive</h1>
+          <p class="muted">Curated pre-loved finds and new bargains — hand-checked for quality across fashion, footwear, tech, toys, sports, and home.</p>
           <div class="cta">
-            <a class="btn primary" href="#categories" data-link>Shop Categories</a>
-            <a class="btn dark" href="#booking" data-link>Book Sourcing Help</a>
+            <a class="btn dark" href="#categories" data-link>Shop Categories</a>
           </div>
         </div>
-        <div>
-          <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1560&auto=format&fit=crop" alt="Collage of vintage clothing, shoes, and gadgets" loading="lazy" />
-        </div>
+        <img class="hero-thumb"
+     src="images/hero.jpg"
+     alt="Smartly dressed young man sitting on a bench"
+     loading="lazy" />
+
       </div>
 
       <h2 class="kicker">Featured Picks</h2>
       <div class="grid cols-3">
         <article class="card">
-          <img src="images/sneakers.jpg" alt="Retro Runner Sneakers" loading="lazy"/>
+          <img src="images/white-classics-(2).jpg" alt="Retro sneakers on a shelf" loading="lazy"/>
           <div class="pad">
-            <h3>Retro Runner Sneakers</h3>
+            <h3>White Classics</h3>
             <p class="muted">Lightly worn • Size range varies</p>
             <div class="cta"><a class="btn dark" href="#category-sneakers" data-link>View in Sneakers</a></div>
           </div>
         </article>
         <article class="card">
-          <img src="images/camera.jpg" alt="Vintage Film Camera" loading="lazy"/>
+          <img src="images/film-camera.jpg" alt="Vintage film camera" loading="lazy"/>
           <div class="pad">
-            <h3>Vintage Film Camera</h3>
-            <p class="muted">Tested & working • Limited stock</p>
+            <h3>Film Camera</h3>
+            <p class="muted">Tested &amp; working • Limited stock</p>
             <div class="cta"><a class="btn dark" href="#category-electronics" data-link>View in Electronics</a></div>
           </div>
         </article>
         <article class="card">
-          <img src="images/board-games.jpg" alt="Board Game Classics" loading="lazy"/>
+          <img src="images/mixed-toys-games.jpg" alt="Board games stack" loading="lazy"/>
           <div class="pad">
-            <h3>Board Game Classics</h3>
+            <h3>Mixed Toys &amp; Games</h3>
             <p class="muted">Family favorites • Checked for completeness</p>
             <div class="cta"><a class="btn dark" href="#category-toys" data-link>View in Toys</a></div>
           </div>
@@ -187,466 +147,361 @@
       </div>
     </section>
 
-    <!-- MENU PAGE -->
+    <!-- MENU -->
     <section id="menu" class="page" aria-labelledby="menu-h">
       <h2 id="menu-h">Shop Menu</h2>
-      <div class="menu-list">
-        <a href="#categories" data-link><span>Browse Categories</span><span>→</span></a>
-        <a href="#category-vintage" data-link><span>Vintage Clothing & Accessories</span><span>→</span></a>
-        <a href="#category-sneakers" data-link><span>Sneakers & Shoes</span><span>→</span></a>
-        <a href="#category-electronics" data-link><span>Electronics & Tech</span><span>→</span></a>
-        <a href="#category-toys" data-link><span>Toys & Board Games</span><span>→</span></a>
-        <a href="#category-sports" data-link><span>Sports Equipment & Memorabilia</span><span>→</span></a>
-        <a href="#category-home" data-link><span>Home Decor & Tools</span><span>→</span></a>
-        <a href="#blog" data-link><span>Blog</span><span>→</span></a>
-        <a href="#booking" data-link><span>Book Sourcing / Private Viewing</span><span>→</span></a>
-      </div>
-    </section>
-
-    <!-- CATEGORIES OVERVIEW -->
-    <section id="categories" class="page" aria-labelledby="categories-h">
-      <h2 id="categories-h">Categories</h2>
-      <p class="muted">Tap a category to explore products.</p>
+      <p class="muted">Browse categories or jump into the latest arrivals.</p>
       <div class="grid cols-3">
-        <a class="card" href="#category-vintage" data-link>
-          <img src="images/vintage.jpg" alt="Vintage clothing and accessories" loading="lazy"/>
-          <div class="pad"><h3>Vintage Clothing & Accessories</h3><p class="muted">Denim, tees, jackets, bags, watches.</p></div>
+        <a class="card" href="#categories" data-link>
+          <img src="images/vintage-denim-jacket (2).jpg" alt="Categories"/>
+          <div class="pad"><strong>All Categories</strong></div>
         </a>
         <a class="card" href="#category-sneakers" data-link>
-          <img src="images/sneakers-shoes.jpg" alt="Sneaker lineup" loading="lazy"/>
-          <div class="pad"><h3>Sneakers & Shoes</h3><p class="muted">Streetwear staples & rare finds.</p></div>
+          <img src="images/white-classics-(2).jpg" alt="Sneakers"/>
+          <div class="pad"><strong>Sneakers &amp; Shoes</strong></div>
         </a>
         <a class="card" href="#category-electronics" data-link>
-          <img src="images/electronics-tech.jpg" alt="Headphones and gadgets" loading="lazy"/>
-          <div class="pad"><h3>Electronics & Tech</h3><p class="muted">Cameras, audio, consoles, accessories.</p></div>
+          <img src="images/film-camera.jpg" alt="Electronics"/>
+          <div class="pad"><strong>Electronics &amp; Tech</strong></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section id="categories" class="page" aria-labelledby="cats-h">
+      <h2 id="cats-h">Categories</h2>
+      <div class="grid cols-3">
+        <a class="card" href="#category-vintage" data-link>
+          <img src="images/vintage-denim-jacket (2).jpg" alt="Vintage Clothing & Accessories">
+          <div class="pad">
+            <h3>Vintage Clothing &amp; Accessories</h3>
+            <p class="muted">Denim, leather, watches &amp; more</p>
+          </div>
+        </a>
+        <a class="card" href="#category-sneakers" data-link>
+          <img src="images/white-classics-(2).jpg" alt="Sneakers & Shoes">
+          <div class="pad">
+            <h3>Sneakers &amp; Shoes</h3>
+            <p class="muted">Runners, classics, boots</p>
+          </div>
+        </a>
+        <a class="card" href="#category-electronics" data-link>
+          <img src="images/film-camera.jpg" alt="Electronics & Tech">
+          <div class="pad">
+            <h3>Electronics &amp; Tech</h3>
+            <p class="muted">Cameras, audio, retro consoles</p>
+          </div>
         </a>
         <a class="card" href="#category-toys" data-link>
-          <img src="images/toys-games.jpg" alt="Toys & Board Games" style="width:100%; height:auto; border-radius:8px;">
-          <div class="pad"><h3>Toys & Board Games</h3><p class="muted">Complete sets & collector items.</p></div>
+          <img src="images/classic-puzzle-set.jpg" alt="Toys & Board Games">
+          <div class="pad">
+            <h3>Toys &amp; Board Games</h3>
+            <p class="muted">Family sets, puzzles, bundles</p>
+          </div>
         </a>
         <a class="card" href="#category-sports" data-link>
-          <img src="images/sports-gear.jpg" alt="Sports equipment and memorabilia" loading="lazy"/>
-          <div class="pad"><h3>Sports Equipment & Memorabilia</h3><p class="muted">Balls, bats, jerseys, signed pieces.</p></div>
+          <img src="images/official-basketball.jpg" alt="Sports & Memorabilia">
+          <div class="pad">
+            <h3>Sports Equipment &amp; Memorabilia</h3>
+            <p class="muted">Game gear, signed items</p>
+          </div>
         </a>
         <a class="card" href="#category-home" data-link>
-          <img src="images/home-decor-tools.jpg" alt="Home decor and tools" loading="lazy"/>
-          <div class="pad"><h3>Home Decor & Tools</h3><p class="muted">Lighting, art, small tools & fixes.</p></div>
+          <img src="images/mid-century-lamp.jpg" alt="Home Decor & Tools">
+          <div class="pad">
+            <h3>Home Decor &amp; Tools</h3>
+            <p class="muted">Lighting, wall art, kits</p>
+          </div>
         </a>
       </div>
     </section>
 
-    <!-- CATEGORY PAGES (sample product cards) -->
+    <!-- CATEGORY: Vintage -->
     <section id="category-vintage" class="page" aria-labelledby="catvintage-h">
-      <h2 id="catvintage-h">Vintage Clothing & Accessories</h2>
+      <h2 id="catvintage-h">Vintage Clothing &amp; Accessories</h2>
       <div class="grid cols-3">
         <article class="card">
-  <img src="images/vintage-denim-jacket.jpg" width="960" height="640" loading="lazy" alt="Vintage denim jacket on a rack">
-  <div class="pad">
-    <h3>Vintage Denim Jacket</h3>
-    <p class="muted">M / Blue • Excellent condition</p>
-    <button class="btn dark" data-action="enquire" data-item="Vintage Denim Jacket">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/leather-satchel.jpg" width="960" height="640" loading="lazy" alt="Brown leather satchel">
-  <div class="pad">
-    <h3>Leather Satchel</h3>
-    <p class="muted">Brown • Patina • One-off</p>
-    <button class="btn dark" data-action="enquire" data-item="Leather Satchel">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/classic-analog-watch.jpg" width="960" height="640" loading="lazy" alt="Classic analog watch">
-  <div class="pad">
-    <h3>Classic Analog Watch</h3>
-    <p class="muted">Tested • New battery</p>
-    <button class="btn dark" data-action="enquire" data-item="Classic Analog Watch">Enquire</button>
-  </div>
-</article>
-
+          <img src="images/vintage-denim-jacket (2).jpg" alt="Vintage Denim Jacket">
+          <div class="pad">
+            <h3>Vintage Denim Jacket</h3>
+            <p class="muted">Iconic washes • Unisex sizing</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Vintage Denim Jacket">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/leather-satchel.jpg" alt="Leather Satchel">
+          <div class="pad">
+            <h3>Leather Satchel</h3>
+            <p class="muted">Classic carry • Hand-finished</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Leather Satchel">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/classic-analog-watch.jpg" alt="Classic Analog Watch">
+          <div class="pad">
+            <h3>Classic Analog Watch</h3>
+            <p class="muted">Quartz movement • Clean dial</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Classic Analog Watch">Enquire</button></div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section id="category-sneakers" class="page" aria-labelledby="catsneakers-h">
-      <h2 id="catsneakers-h">Sneakers & Shoes</h2>
+    <!-- CATEGORY: Sneakers -->
+    <section id="category-sneakers" class="page" aria-labelledby="catsneak-h">
+      <h2 id="catsneak-h">Sneakers &amp; Shoes</h2>
       <div class="grid cols-3">
         <article class="card">
-  <img src="images/grey-runners.jpg" width="960" height="640" loading="lazy" alt="Grey running sneakers">
-  <div class="pad">
-    <h3>Grey Runners</h3>
-    <p class="muted">Lightly worn • Size range varies</p>
-    <button class="btn dark" data-action="enquire" data-item="Grey Runners">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/white-classics.jpg" width="960" height="640" loading="lazy" alt="White classic sneakers">
-  <div class="pad">
-    <h3>White Classics</h3>
-    <p class="muted">Staple pair • Great condition</p>
-    <button class="btn dark" data-action="enquire" data-item="White Classics">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/leather-boots.jpg" width="960" height="640" loading="lazy" alt="Leather boots">
-  <div class="pad">
-    <h3>Leather Boots</h3>
-    <p class="muted">Brown • Winter-ready</p>
-    <button class="btn dark" data-action="enquire" data-item="Leather Boots">Enquire</button>
-  </div>
-</article>
-
+          <img src="images/grey-runners.jpg" alt="Grey Runners">
+          <div class="pad">
+            <h3>Grey Runners</h3>
+            <p class="muted">Lightweight • Daily comfort</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Grey Runners">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/white-classics-(2).jpg" alt="White Classics">
+          <div class="pad">
+            <h3>White Classics</h3>
+            <p class="muted">Timeless style • Easy clean</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="White Classics">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/leather-boots.jpg" alt="Leather Boots">
+          <div class="pad">
+            <h3>Leather Boots</h3>
+            <p class="muted">All-season • Traction sole</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Leather Boots">Enquire</button></div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section id="category-electronics" class="page" aria-labelledby="catelectronics-h">
-      <h2 id="catelectronics-h">Electronics & Tech</h2>
+    <!-- CATEGORY: Electronics -->
+    <section id="category-electronics" class="page" aria-labelledby="catelec-h">
+      <h2 id="catelec-h">Electronics &amp; Tech</h2>
       <div class="grid cols-3">
         <article class="card">
-  <img src="images/film-camera.jpg" width="960" height="640" loading="lazy" alt="Vintage film camera">
-  <div class="pad">
-    <h3>Film Camera</h3>
-    <p class="muted">Tested & working • Limited stock</p>
-    <button class="btn dark" data-action="enquire" data-item="Film Camera">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/studio-headphones.jpg" width="960" height="640" loading="lazy" alt="Studio headphones">
-  <div class="pad">
-    <h3>Studio Headphones</h3>
-    <p class="muted">Over-ear • Great isolation</p>
-    <button class="btn dark" data-action="enquire" data-item="Studio Headphones">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/retro-console.jpg" width="960" height="640" loading="lazy" alt="Retro games console">
-  <div class="pad">
-    <h3>Retro Console</h3>
-    <p class="muted">Original controller • Works</p>
-    <button class="btn dark" data-action="enquire" data-item="Retro Console">Enquire</button>
-  </div>
-</article>
-
+          <img src="images/film-camera.jpg" alt="Film Camera">
+          <div class="pad">
+            <h3>Film Camera</h3>
+            <p class="muted">35mm fun • Fully tested</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Film Camera">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/studio-headphones.jpg" alt="Studio Headphones">
+          <div class="pad">
+            <h3>Studio Headphones</h3>
+            <p class="muted">Over-ear • Neutral tuning</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Studio Headphones">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/retro-console.jpg" alt="Retro Console">
+          <div class="pad">
+            <h3>Retro Console</h3>
+            <p class="muted">Cartridges included • HDMI</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Retro Console">Enquire</button></div>
+          </div>
+        </article>
       </div>
     </section>
 
+    <!-- CATEGORY: Toys -->
     <section id="category-toys" class="page" aria-labelledby="cattoys-h">
-      <h2 id="cattoys-h">Toys & Board Games</h2>
+      <h2 id="cattoys-h">Toys &amp; Board Games</h2>
       <div class="grid cols-3">
         <article class="card">
-  <img src="images/board-game-bundle.jpg" width="960" height="640" loading="lazy" alt="Bundle of classic board games">
-  <div class="pad">
-    <h3>Board Game Bundle</h3>
-    <p class="muted">Family favorites • Checked for completeness</p>
-    <button class="btn dark" data-action="enquire" data-item="Board Game Bundle">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/mixed-toys-games.jpg" width="960" height="640" loading="lazy" alt="Mixed toys and games">
-  <div class="pad">
-    <h3>Mixed Toys & Games</h3>
-    <p class="muted">Assorted lots • Great value</p>
-    <button class="btn dark" data-action="enquire" data-item="Mixed Toys & Games">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/classic-puzzle-set.jpg" width="960" height="640" loading="lazy" alt="Classic puzzle set">
-  <div class="pad">
-    <h3>Classic Puzzle Set</h3>
-    <p class="muted">Complete sets • Vintage fun</p>
-    <button class="btn dark" data-action="enquire" data-item="Classic Puzzle Set">Enquire</button>
-  </div>
-</article>
-
+          <img src="images/board-game-bundle.jpg" alt="Board Game Bundle">
+          <div class="pad">
+            <h3>Board Game Bundle</h3>
+            <p class="muted">Family hits • Pre-checked</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Board Game Bundle">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/mixed-toys-games.jpg" alt="Mixed Toys & Games">
+          <div class="pad">
+            <h3>Mixed Toys &amp; Games</h3>
+            <p class="muted">Assorted set • Great value</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Mixed Toys & Games">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/classic-puzzle-set.jpg" alt="Classic Puzzle Set">
+          <div class="pad">
+            <h3>Classic Puzzle Set</h3>
+            <p class="muted">Complete sets • Vintage fun</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Classic Puzzle Set">Enquire</button></div>
+          </div>
+        </article>
       </div>
     </section>
 
+    <!-- CATEGORY: Sports -->
     <section id="category-sports" class="page" aria-labelledby="catsports-h">
-      <h2 id="catsports-h">Sports Equipment & Memorabilia</h2>
+      <h2 id="catsports-h">Sports Equipment &amp; Memorabilia</h2>
       <div class="grid cols-3">
         <article class="card">
-  <img src="images/official-basketball.jpg" width="960" height="640" loading="lazy" alt="Official basketball">
-  <div class="pad">
-    <h3>Official Basketball</h3>
-    <p class="muted">Game-ready</p>
-    <button class="btn dark" data-action="enquire" data-item="Official Basketball">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/signed-jersey.jpg" width="960" height="640" loading="lazy" alt="Signed sports jersey">
-  <div class="pad">
-    <h3>Signed Jersey</h3>
-    <p class="muted">With COA</p>
-    <button class="btn dark" data-action="enquire" data-item="Signed Jersey">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/tennis-racquet.jpg" width="960" height="640" loading="lazy" alt="Tennis racquet">
-  <div class="pad">
-    <h3>Tennis Racquet</h3>
-    <p class="muted">Fresh grip</p>
-    <button class="btn dark" data-action="enquire" data-item="Tennis Racquet">Enquire</button>
-  </div>
-</article>
-
+          <img src="images/official-basketball.jpg" alt="Official Basketball">
+          <div class="pad">
+            <h3>Official Basketball</h3>
+            <p class="muted">Game-ready</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Official Basketball">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/signed-jersey.jpg" alt="Signed Jersey">
+          <div class="pad">
+            <h3>Signed Jersey</h3>
+            <p class="muted">With COA</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Signed Jersey">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/tennis-racquet.jpg" alt="Tennis Racquet">
+          <div class="pad">
+            <h3>Tennis Racquet</h3>
+            <p class="muted">Fresh grip</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Tennis Racquet">Enquire</button></div>
+          </div>
+        </article>
       </div>
     </section>
 
+    <!-- CATEGORY: Home -->
     <section id="category-home" class="page" aria-labelledby="cathome-h">
-      <h2 id="cathome-h">Home Decor & Tools</h2>
+      <h2 id="cathome-h">Home Decor &amp; Tools</h2>
       <div class="grid cols-3">
         <article class="card">
-  <img src="images/mid-century-lamp.jpg" width="960" height="640" loading="lazy" alt="Mid-century lamp">
-  <div class="pad">
-    <h3>Mid-Century Lamp</h3>
-    <p class="muted">Warm light • Great patina</p>
-    <button class="btn dark" data-action="enquire" data-item="Mid-Century Lamp">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/framed-wall-art.jpg" width="960" height="640" loading="lazy" alt="Framed wall art">
-  <div class="pad">
-    <h3>Framed Wall Art</h3>
-    <p class="muted">Ready to hang</p>
-    <button class="btn dark" data-action="enquire" data-item="Framed Wall Art">Enquire</button>
-  </div>
-</article>
-
-<article class="card">
-  <img src="images/hand-tools-set.jpg" width="960" height="640" loading="lazy" alt="Compact hand tools set">
-  <div class="pad">
-    <h3>Hand Tools Set</h3>
-    <p class="muted">Compact kit • Everyday fixes</p>
-    <button class="btn dark" data-action="enquire" data-item="Hand Tools Set">Enquire</button>
-  </div>
-</article>
-
+          <img src="images/mid-century-lamp.jpg" alt="Mid-Century Lamp">
+          <div class="pad">
+            <h3>Mid-Century Lamp</h3>
+            <p class="muted">Industrial style • Warm glow</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Mid-Century Lamp">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/framed-wall-art.jpg" alt="Framed Wall Art">
+          <div class="pad">
+            <h3>Framed Wall Art</h3>
+            <p class="muted">Ready to hang</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Framed Wall Art">Enquire</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="images/tool-kit.jpg" alt="Hand Tools Set">
+          <div class="pad">
+            <h3>Hand Tools Set</h3>
+            <p class="muted">Everyday repairs • Portable</p>
+            <div class="cta"><button class="btn dark" data-action="enquire" data-item="Hand Tools Set">Enquire</button></div>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- ABOUT -->
     <section id="about" class="page" aria-labelledby="about-h">
-      <h2 id="about-h">Who We Are</h2>
-      <p>At <strong>BargainHive</strong>, we believe everyone deserves access to quality products at unbeatable prices. Like a hive buzzing with activity, we’re always searching, sourcing, and stocking the best deals from clearance, thrift, and wholesale finds.</p>
-      <p>Our mission is simple: <em>turn smart shopping into everyday savings</em>. Every item is carefully chosen for value, quality, and affordability—so you can shop with confidence.</p>
+      <h2 id="about-h">About BargainHive</h2>
+      <p>We’re a small team in love with great deals and better re-use. Each item is quality-checked and fairly priced.</p>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog" class="page" aria-labelledby="blog-h">
+      <h2 id="blog-h">Blog</h2>
+      <p class="muted">Tips on finding, cleaning, and keeping your finds in top shape.</p>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="page" aria-labelledby="contact-h">
-      <h2 id="contact-h">Contact Us</h2>
-      <p class="muted">Have a question about an item? Send us a note and we’ll get back to you within 24 hours.</p>
-      <form id="contactForm">
-        <div>
-          <label for="c-name">Name</label>
-          <input id="c-name" name="name" required placeholder="Your name" />
+      <h2 id="contact-h">Contact</h2>
+      <form id="contactForm" class="card" style="padding:12px">
+        <div class="grid cols-2">
+          <div>
+            <label for="c-name">Name</label>
+            <input id="c-name" required placeholder="Your name" style="width:100%; padding:10px; border:1px solid var(--border); border-radius:8px"/>
+          </div>
+          <div>
+            <label for="c-email">Email</label>
+            <input id="c-email" type="email" required placeholder="you@example.com" style="width:100%; padding:10px; border:1px solid var(--border); border-radius:8px"/>
+          </div>
         </div>
-        <div>
-          <label for="c-email">Email</label>
-          <input id="c-email" name="email" type="email" required placeholder="you@example.com" />
-        </div>
-        <div>
+        <div style="margin-top:8px">
           <label for="c-msg">Message</label>
-          <textarea id="c-msg" name="message" rows="5" required placeholder="How can we help? Include product name if relevant."></textarea>
+          <textarea id="c-msg" rows="4" placeholder="How can we help?" style="width:100%; padding:10px; border:1px solid var(--border); border-radius:8px"></textarea>
         </div>
-        <button class="btn dark" type="submit">Send Message</button>
-        <div class="success" id="contactSuccess">Thanks! Your message has been sent.</div>
-        <p class="note">Tip: To make this form email you, replace this demo handler with Formspree (free) or your own endpoint.</p>
+        <div class="cta" style="margin-top:10px">
+          <button class="btn dark">Send</button>
+          <span id="contactSuccess" class="muted" style="display:none; margin-left:8px">Thanks! We’ll be in touch.</span>
+        </div>
       </form>
     </section>
 
     <!-- BOOKING -->
-    <!-- FIND IT FOR ME (Booking page replacement) -->
-<section id="booking" class="page" aria-labelledby="booking-h">
-  <h2 id="booking-h">Find It For Me</h2>
-  <p class="muted">Tell us what you’re hunting for and we’ll source it fast. Choose a category, add details, set your budget, and we’ll reply with options—often within 24–48 hours.</p>
-
-  <form name="sourcing-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" class="card pad">
-    <input type="hidden" name="form-name" value="sourcing-request">
-    <p class="hidden"><label>Don’t fill this out if you’re human: <input name="bot-field"></label></p>
-
-    <div class="grid cols-2">
-      <div>
-        <label>Category</label>
-        <select id="category" name="category" required>
-          <option value="" disabled selected>Select a category</option>
-          <option value="vintage">Vintage Clothing & Accessories</option>
-          <option value="sneakers">Sneakers & Shoes</option>
-          <option value="electronics">Electronics & Tech</option>
-          <option value="toys">Toys & Board Games</option>
-          <option value="sports">Sports Equipment & Memorabilia</option>
-          <option value="home">Home Decor & Tools</option>
-        </select>
-      </div>
-      <div>
-        <label>Subcategory</label>
-        <select id="subcategory" name="subcategory" required>
-          <option value="" disabled selected>Select a subcategory</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Condition</label>
-        <select name="condition">
-          <option>Any</option><option>New</option><option>Like New</option><option>Very Good</option><option>Good (minor wear)</option>
-        </select>
-      </div>
-      <div>
-        <label>Budget (NZD)</label>
-        <input type="number" name="budget_nzd" min="1" placeholder="e.g., 150">
-      </div>
-    </div>
-
-    <label class="mt-4">What exactly are you looking for?</label>
-    <textarea name="item_description" rows="3" placeholder="e.g., 90s Levi’s 501 (W32 L30), Nintendo Switch OLED, size 10 Nike Dunks, cordless drill kit…" required></textarea>
-
-    <div class="grid cols-2">
-      <div>
-        <label>Size / Model</label>
-        <input type="text" name="size_or_model" placeholder="e.g., US 10 / 501 / iPhone 13">
-      </div>
-      <div>
-        <label>Preferred Color</label>
-        <input type="text" name="color" placeholder="e.g., black / red / natural wood">
-      </div>
-    </div>
-
-    <label class="mt-4">When do you need it?</label>
-    <select name="urgency">
-      <option value="flexible">Flexible</option>
-      <option value="1-3 days">1–3 days</option>
-      <option value="1 week">About a week</option>
-      <option value="2+ weeks">2+ weeks</option>
-    </select>
-
-    <div class="grid cols-2">
-      <div>
-        <label>Your city/area</label>
-        <input type="text" name="location" placeholder="e.g., Auckland, Wellington, Christchurch">
-      </div>
-      <div>
-        <label>Delivery or Pickup?</label>
-        <select name="delivery"><option>Either</option><option>Delivery</option><option>Pickup</option></select>
-      </div>
-    </div>
-
-    <label class="mt-4">Reference photo (optional)</label>
-    <input type="file" name="reference_photo" accept="image/*">
-
-    <div class="grid cols-2">
-      <div>
-        <label>Name</label>
-        <input type="text" name="name" required>
-      </div>
-      <div>
-        <label>Email</label>
-        <input type="email" name="email" required>
-      </div>
-    </div>
-
-    <label class="mt-4">Phone (optional)</label>
-    <input type="tel" name="phone" placeholder="+64 …">
-
-    <label class="checkbox mt-4"><input type="checkbox" name="consent" required> I agree to be contacted about sourcing this item.</label>
-    <button type="submit" class="button mt-6">Submit request</button>
-    <p class="muted">We’ll email you with options as soon as we find a match.</p>
-  </form>
-</section>
-
-<script>
-  const map = {
-    vintage: ["Denim (Levi’s, Lee)","Jackets & Coats","Tees & Sweatshirts","Dresses & Skirts","Bags & Wallets","Watches & Accessories"],
-    sneakers: ["Nike","Adidas","New Balance","Converse","Jordan","Boots / Other"],
-    electronics: ["Phones & Tablets","Laptops & Accessories","Headphones & Audio","Cameras","Gaming (consoles/games)","Wearables / Other"],
-    toys: ["Board Games","Puzzles","LEGO & Bricks","Action Figures","Retro/Collectible","Kids & Family"],
-    sports: ["Balls (rugby/football/basketball)","Bats & Sticks","Jerseys & Apparel","Training Gear","Signed Memorabilia","Other"],
-    home: ["Lighting","Art & Prints","Small Tools","Kitchen & Appliances","Storage & Shelving","Decor Accents"]
-  };
-  const cat = document.getElementById('category');
-  const sub = document.getElementById('subcategory');
-  function resetSubs(){ sub.innerHTML = '<option value="" disabled selected>Select a subcategory</option>'; }
-  cat?.addEventListener('change', () => {
-    resetSubs();
-    (map[cat.value] || []).forEach(label => {
-      const o = document.createElement('option');
-      o.value = label; o.textContent = label;
-      sub.appendChild(o);
-    });
-  });
-</script>
-
-
-    <!-- BLOG -->
-    <section id="blog" class="page" aria-labelledby="blog-h">
-      <h2 id="blog-h">Buzz from the Hive</h2>
-      <div class="blog-grid">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop" alt="Vintage rack" loading="lazy"/>
-          <div class="pad">
-            <h3>How We Curate Vintage</h3>
-            <p class="muted">A peek at our sourcing rules: condition, character, and timeless style.</p>
+    <section id="booking" class="page" aria-labelledby="book-h">
+      <h2 id="book-h">Book an Appointment</h2>
+      <form id="bookingForm" class="card" style="padding:12px">
+        <div class="grid cols-2">
+          <div>
+            <label for="b-name">Name</label>
+            <input id="b-name" required placeholder="Your name" style="width:100%; padding:10px; border:1px solid var(--border); border-radius:8px"/>
           </div>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop" alt="Retro camera" loading="lazy"/>
-          <div class="pad">
-            <h3>Testing Retro Tech</h3>
-            <p class="muted">From optics to shutter speeds—we verify function before it hits the shelf.</p>
+          <div>
+            <label for="b-email">Email</label>
+            <input id="b-email" type="email" required placeholder="you@example.com" style="width:100%; padding:10px; border:1px solid var(--border); border-radius:8px"/>
           </div>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop" alt="Sneakers" loading="lazy"/>
-          <div class="pad">
-            <h3>Sizing Sneakers the Smart Way</h3>
-            <p class="muted">How to read wear patterns and pick pairs that fit like new.</p>
+        </div>
+        <div class="grid cols-2" style="margin-top:8px">
+          <div>
+            <label for="b-date">Preferred date</label>
+            <input id="b-date" type="date" required style="width:100%; padding:10px; border:1px solid var(--border); border-radius:8px"/>
           </div>
-        </article>
-      </div>
+          <div>
+            <label for="b-time">Time</label>
+            <input id="b-time" type="time" required style="width:100%; padding:10px; border:1px solid var(--border); border-radius:8px"/>
+          </div>
+        </div>
+        <div class="cta" style="margin-top:10px">
+          <button class="btn dark">Book</button>
+          <span id="bookingSuccess" class="muted" style="display:none; margin-left:8px">Booked! We’ll confirm by email.</span>
+        </div>
+      </form>
     </section>
+
   </main>
 
-  <footer>
-    <div class="wrap" style="padding:26px 0">
-      <div class="cols">
-        <div>
-          <div class="title" style="margin-bottom:8px">BargainHive</div>
-          <p class="muted">Sweet Deals. Every Day.</p>
-        </div>
-        <div>
-          <strong>Navigate</strong>
-          <ul>
-            <li><a href="#home" data-link>Home</a></li>
-            <li><a href="#menu" data-link>Menu</a></li>
-            <li><a href="#categories" data-link>Categories</a></li>
-            <li><a href="#blog" data-link>Blog</a></li>
-            <li><a href="#about" data-link>About</a></li>
-            <li><a href="#contact" data-link>Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <strong>Connect</strong>
-          <ul>
-            <li><a href="https://instagram.com/" target="_blank" rel="noreferrer">Instagram</a></li>
-            <li><a href="https://facebook.com/" target="_blank" rel="noreferrer">Facebook</a></li>
-            <li><a href="mailto:info@bargainhive.shop">info@bargainhive.shop</a></li>
-          </ul>
-        </div>
-      </div>
-      <p class="muted" style="margin-top:16px">© <span id="yr"></span> BargainHive. All rights reserved.</p>
+  <!-- Footer -->
+  <footer class="wrap" style="padding:22px 0; border-top:1px solid var(--border); margin-top:24px">
+    <div class="grid cols-2">
+      <div>&copy; <span id="yr"></span> BargainHive</div>
+      <div class="muted" style="text-align:right">Made with care • Re-use > waste</div>
     </div>
   </footer>
 
+  <!-- Cart Drawer -->
+  <div id="cartDrawer" aria-hidden="true">
+    <aside id="cartPanel">
+      <div id="cartHead">
+        <strong>Your cart</strong>
+        <button id="cartClose" class="btn">✕</button>
+      </div>
+      <div id="cartItems" style="padding:12px 20px; overflow:auto; flex:1;"></div>
+      <div id="cartFoot">
+        <div style="display:flex; gap:12px; align-items:center; width:100%; justify-content:space-between;">
+          <strong id="cartTotal">$0.00</strong>
+          <div style="display:flex; gap:8px">
+            <button id="cartClear" class="btn">Clear</button>
+            <button id="cartCheckout" class="btn dark">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Router + small helpers -->
   <script>
-    // Simple hash router for single-file multi-page UX
     const pages = [...document.querySelectorAll('.page')];
     const navLinks = [...document.querySelectorAll('[data-link]')];
     function show(id){
@@ -654,7 +509,6 @@
       const el = document.querySelector(id) || document.querySelector('#home');
       el.classList.add('active');
       navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===id));
-      // update title for basic SEO/UX
       const map = {
         '#home':'BargainHive – Sweet Deals. Every Day.',
         '#menu':'Shop Menu – BargainHive',
@@ -672,11 +526,11 @@
       };
       document.title = map[id] || 'BargainHive – Sweet Deals. Every Day.';
     }
-    function route(){show(location.hash || '#home')}
+    function route(){ show(location.hash || '#home') }
     window.addEventListener('hashchange', route);
     route();
 
-    // Simple form handlers (demo)
+    // Simple forms demo
     function handleForm(id, successId){
       const form = document.getElementById(id);
       const success = document.getElementById(successId);
@@ -690,7 +544,7 @@
     handleForm('contactForm','contactSuccess');
     handleForm('bookingForm','bookingSuccess');
 
-    // Enquiry buttons → prefill contact form + navigate to contact
+    // Enquiry buttons → prefill + navigate to contact (kept for fallback)
     document.addEventListener('click', (e)=>{
       const btn = e.target.closest('[data-action="enquire"]');
       if(!btn) return;
@@ -698,86 +552,98 @@
       location.hash = '#contact';
       setTimeout(()=>{
         const msg = document.getElementById('c-msg');
-        msg.value = `Hi BargainHive, I’d like to enquire about: ${item}.`;
-        msg.focus();
+        if (msg) { msg.value = `Hi BargainHive, I’d like to enquire about: ${item}.`; msg.focus(); }
       }, 60);
     });
 
-    // Year in footer
+    // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
   </script>
+
+  <!-- Stripe + Cart -->
   <script src="https://js.stripe.com/v3"></script>
-<script src="cart.js" defer></script>
-<script>
-  // Map product titles (must match your <h3> text exactly) → Stripe Price IDs
-  const PRICE_MAP = {
-    // Vintage Clothing & Accessories
-    "Vintage Denim Jacket": "price_1S0ghePS76jaeeTCaVmX2zQ6",
-    "Leather Satchel": "price_1S8slvPS76jaeeTCkIMVc5Sw",
-    "Classic Analog Watch": "price_1S8sr5PS76jaeeTCg9LoiUk2",
+  <script src="/cart.js" defer></script>
 
-    // Sneakers & Shoes
-    "Grey Runners": "price_1S0g5tPS76jaeeTCTlm4fHBx",
-    "White Classics": "price_1S0gFIPST6jaeeTCO3F3GkZo",
-    "Leather Boots": "price_1S9dpSPS76jaeeTCsDBwFL2d",
+  <!-- Replace Enquire with [Add to cart] + [Buy now] using your Stripe Price IDs -->
+  <script>
+    // Map product titles → Stripe Price IDs
+    const PRICE_MAP = {
+      // Vintage
+      "Vintage Denim Jacket": "price_1S0ghePS76jaeeTCaVmX2zQ6",
+      "Leather Satchel": "price_1S8slvPS76jaeeTCkIMVc5Sw",
+      "Classic Analog Watch": "price_1S8sr5PS76jaeeTCg9LoiUk2",
 
-    // Electronics & Tech
-    "Film Camera": "price_1S9bYvPS76jaeeTCWwI6ThwX",
-    "Studio Headphones": "price_1S9baNPS76jaeeTCKnpcYnza",
-    "Retro Console": "price_1S9bf8PS76jaeeTCajhdh1Qd",
+      // Sneakers
+      "Grey Runners": "price_1S0g5tPS76jaeeTCTlm4fHBx",
+      "White Classics": "price_1S0gFIPST6jaeeTCO3F3GkZo",
+      "Leather Boots": "price_1S9dpSPS76jaeeTCsDBwFL2d",
 
-    // Toys & Board Games
-    "Board Game Bundle": "price_1S0gS7PS76jaeeTCzdIK3cZJ",   // ensure title matches your <h3>
-    "Mixed Toys & Games": "price_1S9brwPS76jaeeTC0pwXs899",
-    "Classic Puzzle Set": "price_1S9cQTPS76jaeeTCKqkHYb3Y",
+      // Electronics
+      "Film Camera": "price_1S9bYvPS76jaeeTCWwI6ThwX",
+      "Studio Headphones": "price_1S9baNPS76jaeeTCKnpcYnza",
+      "Retro Console": "price_1S9bf8PS76jaeeTCajhdh1Qd",
 
-    // Sports Equipment & Memorabilia
-    "Official Basketball": "price_1S9cVnPS76jaeeTCHkX4oTFS",
-    "Signed Jersey": "price_1S9cXZPS76jaeeTCyti1lESE",
-    "Tennis Racquet": "price_1S9cZHPS76jaeeTCaTigNEH9",
+      // Toys
+      "Board Game Bundle": "price_1S0gS7PS76jaeeTCzdIK3cZJ",
+      "Mixed Toys & Games": "price_1S9brwPS76jaeeTC0pwXs899",
+      "Classic Puzzle Set": "price_1S9cQTPS76jaeeTCKqkHYb3Y",
 
-    // Home Decor & Tools
-    "Mid-Century Lamp": "price_1S9ctDPS76jaeeTC3gGF49hs",
-    "Framed Wall Art": "price_1S0gdRPS76jaeeTChB1i4rQg",
-    "Hand Tools Set": "price_1S9cwUPS76jaeeTCZB4b4Aiu"
-  };
+      // Sports
+      "Official Basketball": "price_1S9cVnPS76jaeeTCHkX4oTFS",
+      "Signed Jersey": "price_1S9cXZPS76jaeeTCyti1lESE",
+      "Tennis Racquet": "price_1S9cZHPS76jaeeTCaTigNEH9",
 
-  // Create a Buy Now button that calls startCheckout (defined in cart.js)
-  function makeBuyButton(priceId, qty = 1, classes = "btn dark") {
-    const btn = document.createElement("button");
-    btn.className = classes;
-    btn.textContent = "Buy now";
-    btn.dataset.price = priceId;
-    btn.dataset.qty = String(qty);
-    btn.addEventListener("click", async () => {
-      try { await startCheckout([{ price: priceId, quantity: qty }]); }
-      catch (err) { console.error("Checkout error:", err); alert("Checkout could not start."); }
-    });
-    return btn;
-  }
+      // Home
+      "Mid-Century Lamp": "price_1S9ctDPS76jaeeTC3gGF49hs",
+      "Framed Wall Art": "price_1S0gdRPS76jaeeTChB1i4rQg",
+      "Hand Tools Set": "price_1S9cwUPS76jaeeTCZB4b4Aiu"
+    };
 
-  // Replace all Enquire buttons with Buy now, matched by product title
-  function upgradeEnquireButtons() {
-    document.querySelectorAll('button[data-action="enquire"]').forEach((btn) => {
-      let title = btn.getAttribute("data-item")?.trim();
-      if (!title) {
-        const card = btn.closest(".card");
-        const h3 = card ? card.querySelector("h3") : null;
-        title = h3 ? h3.textContent.trim() : "";
-      }
-      const priceId = PRICE_MAP[title];
-      if (priceId) {
-        const buy = makeBuyButton(priceId, 1, btn.className || "btn dark");
-        btn.replaceWith(buy);
-      } else {
-        console.warn(`No Stripe price for "${title}". Add it to PRICE_MAP if this should be purchasable.`);
-      }
-    });
-  }
+    function makeAddToCartButton(priceId, name, classes="btn") {
+      const btn = document.createElement("button");
+      btn.className = classes;
+      btn.textContent = "Add to cart";
+      btn.dataset.action = "add-to-cart";
+      btn.dataset.price  = priceId;
+      btn.dataset.name   = name || "Item";
+      return btn;
+    }
+    function makeBuyNowButton(priceId, qty=1, classes="btn dark") {
+      const btn = document.createElement("button");
+      btn.className = classes;
+      btn.textContent = "Buy now";
+      btn.addEventListener("click", async () => {
+        try { await startCheckout([{ price: priceId, quantity: qty }]); }
+        catch (e) { console.error(e); alert("Checkout could not start."); }
+      });
+      return btn;
+    }
 
-  // Run after DOM is ready (cart.js is deferred and already loaded)
-  window.addEventListener("DOMContentLoaded", upgradeEnquireButtons);
-</script>
+    function upgradeEnquireButtons() {
+      document.querySelectorAll('button[data-action="enquire"]').forEach((oldBtn) => {
+        let title = oldBtn.getAttribute("data-item")?.trim();
+        if (!title) {
+          const card = oldBtn.closest(".card");
+          const h3   = card?.querySelector("h3");
+          title = h3 ? h3.textContent.trim() : "";
+        }
+        const priceId = PRICE_MAP[title];
+        if (!priceId) {
+          console.warn(`No Stripe price for "${title}". Leaving Enquire button.`);
+          return;
+        }
+        const wrap = document.createElement("div");
+        wrap.style.display = "flex";
+        wrap.style.gap = "8px";
+        wrap.append(
+          makeAddToCartButton(priceId, title, "btn"),
+          makeBuyNowButton(priceId, 1, "btn dark")
+        );
+        oldBtn.replaceWith(wrap);
+      });
+    }
 
+    window.addEventListener("DOMContentLoaded", upgradeEnquireButtons);
+  </script>
 </body>
 </html>

@@ -564,86 +564,52 @@
   <script src="https://js.stripe.com/v3"></script>
   <script src="/cart.js" defer></script>
 
-  <!-- Replace Enquire with [Add to cart] + [Buy now] using your Stripe Price IDs -->
-  <script>
-    // Map product titles → Stripe Price IDs
-    const PRICE_MAP = {
-      // Vintage
-      "Vintage Denim Jacket": "price_1S0ghePS76jaeeTCaVmX2zQ6",
-      "Leather Satchel": "price_1S8slvPS76jaeeTCkIMVc5Sw",
-      "Classic Analog Watch": "price_1S8sr5PS76jaeeTCg9LoiUk2",
+  <!-- BEGIN: Replace Enquire -> Buy Now for all categories -->
+<script>
+  // Stripe Price IDs (TEST MODE). Keys must match <h3> text in each product card.
+  // Note: &amp; in HTML becomes & in textContent, so use & here.
+  const PRICE_MAP = {
+    // Vintage Clothing & Accessories
+    "Vintage Denim Jacket": "price_1S0ghePS76jaeeTCxBUK8oWx",
+    "Leather Satchel":      "price_1S8slvPS76jaeeTCkIMVc5Sw",
+    "Classic Analog Watch": "price_1S8sr5PS76jaeeTC6Hh6yX4D",
 
-      // Sneakers
-      "Grey Runners": "price_1S0g5tPS76jaeeTCTlm4fHBx",
-      "White Classics": "price_1S0gFIPST6jaeeTCO3F3GkZo",
-      "Leather Boots": "price_1S9dpSPS76jaeeTCsDBwFL2d",
+    // Sneakers & Shoes
+    "Grey Runners":   "price_1S0g5tPS76jaeeTCREWPoDQW",
+    "White Classics": "price_1S0gFIPS76jaeeTCABJFNWtk",
+    "Leather Boots":  "price_1S9dpSPS76jaeeTCsDBwFL2d",
 
-      // Electronics
-      "Film Camera": "price_1S9bYvPS76jaeeTCWwI6ThwX",
-      "Studio Headphones": "price_1S9baNPS76jaeeTCKnpcYnza",
-      "Retro Console": "price_1S9bf8PS76jaeeTCajhdh1Qd",
+    // Electronics & Tech
+    "Film Camera":        "price_1S9bYvPS76jaeeTC07402xE3",
+    "Studio Headphones":  "price_1S9baNPS76jaeeTCm1tUE9tD",
+    "Retro Console":      "price_1S9bf8PS76jaeeTCajhdh1Qd",
 
-      // Toys
-      "Board Game Bundle": "price_1S0gS7PS76jaeeTCzdIK3cZJ",
-      "Mixed Toys & Games": "price_1S9brwPS76jaeeTC0pwXs899",
-      "Classic Puzzle Set": "price_1S9cQTPS76jaeeTCKqkHYb3Y",
+    // Toys & Board Games
+    "Board Game Classics": "price_1S9bozPS76jaeeTCbvv4jOZs",
+    "Board Game Bundle":   "price_1S9bozPS76jaeeTCbvv4jOZs", // alias
+    "Mixed Toys & Games":  "price_1S9brwPS76jaeeTC0pwXs899",
+    "Classic Puzzle Set":  "price_1S9cSePS76jaeeTCPDRBpR8u",
 
-      // Sports
-      "Official Basketball": "price_1S9cVnPS76jaeeTCHkX4oTFS",
-      "Signed Jersey": "price_1S9cXZPS76jaeeTCyti1lESE",
-      "Tennis Racquet": "price_1S9cZHPS76jaeeTCaTigNEH9",
+    // Sports Equipment & Memorabilia
+    "Assorted Sports Gear":  "price_1S9cVnPS76jaeeTCmJmnqnDk",
+    "Official Basketball":    "price_1S9cVnPS76jaeeTCmJmnqnDk", // alias
+    "Signed Jersey":          "price_1S9cXZPS76jaeeTCOESC9uJ6",
+    "Vintage Tennis Racket":  "price_1S9cZHPS76jaeeTC1euDfeq2",
+    "Tennis Racquet":         "price_1S9cZHPS76jaeeTC1euDfeq2", // alias
 
-      // Home
-      "Mid-Century Lamp": "price_1S9ctDPS76jaeeTC3gGF49hs",
-      "Framed Wall Art": "price_1S0gdRPS76jaeeTChB1i4rQg",
-      "Hand Tools Set": "price_1S9cwUPS76jaeeTCZB4b4Aiu"
-    };
+    // Home Decor & Tools
+    "Home Decor Mix":   "price_1S9ctDPS76jaeeTCsPj8UKZk",
+    "Framed Wall Art":  "price_1S9ctDPS76jaeeTCsPj8UKZk", // alias
+    "Industrial Lamp":  "price_1S9cusPS76jaeeTCrRsg0bvR",
+    "Mid-Century Lamp": "price_1S9cusPS76jaeeTCrRsg0bvR", // alias
+    "Compact Tool Kit": "price_1S9cwUPS76jaeeTCZB4b4Aiu",
+    "Hand Tools Set":   "price_1S9cwUPS76jaeeTCZB4b4Aiu"  // alias
+  };
 
-    function makeAddToCartButton(priceId, name, classes="btn") {
-      const btn = document.createElement("button");
-      btn.className = classes;
-      btn.textContent = "Add to cart";
-      btn.dataset.action = "add-to-cart";
-      btn.dataset.price  = priceId;
-      btn.dataset.name   = name || "Item";
-      return btn;
-    }
-    function makeBuyNowButton(priceId, qty=1, classes="btn dark") {
-      const btn = document.createElement("button");
-      btn.className = classes;
-      btn.textContent = "Buy now";
-      btn.addEventListener("click", async () => {
-        try { await startCheckout([{ price: priceId, quantity: qty }]); }
-        catch (e) { console.error(e); alert("Checkout could not start."); }
-      });
-      return btn;
-    }
+  // --- Leave the rest of your script as-is (makeBuyButton, upgradeEnquireButtons, etc.) ---
+</script>
 
-    function upgradeEnquireButtons() {
-      document.querySelectorAll('button[data-action="enquire"]').forEach((oldBtn) => {
-        let title = oldBtn.getAttribute("data-item")?.trim();
-        if (!title) {
-          const card = oldBtn.closest(".card");
-          const h3   = card?.querySelector("h3");
-          title = h3 ? h3.textContent.trim() : "";
-        }
-        const priceId = PRICE_MAP[title];
-        if (!priceId) {
-          console.warn(`No Stripe price for "${title}". Leaving Enquire button.`);
-          return;
-        }
-        const wrap = document.createElement("div");
-        wrap.style.display = "flex";
-        wrap.style.gap = "8px";
-        wrap.append(
-          makeAddToCartButton(priceId, title, "btn"),
-          makeBuyNowButton(priceId, 1, "btn dark")
-        );
-        oldBtn.replaceWith(wrap);
-      });
-    }
+<!-- END: Replace Enquire -> Buy Now for all categories -->
 
-    window.addEventListener("DOMContentLoaded", upgradeEnquireButtons);
-  </script>
 </body>
 </html>
